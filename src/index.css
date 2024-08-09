@@ -1,3 +1,138 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --blue-900: #0B0D17;
+    --blue-300: #D0D6F9;
+    color: white;
+}
+
+@font-face {
+    font-family: 'BellefairRegular';
+    src: url('./assets/fonts/Bellefair/Bellefair-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowCondensedRegular';
+    src: url('./assets/fonts/Barlow_Condensed/BarlowCondensed-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowRegular';
+    src: url('./assets/fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+}
+
+.txt-pre-1 {
+    font-size: 144px;
+}
+
+.txt-pre-2 {
+    font-size: 56px;
+}
+
+.txt-pre-3 {
+    font-size: 24px;
+}
+
+.txt-pre-4 {
+    font-size: 18px;
+}
+
+.txt-pre-6 {
+    font-size: 16px;
+    letter-spacing: 15%;
+}
+
+.txt-pre-8 {
+    font-size: 16px;
+    letter-spacing: 15%;
+}
+
+.txt-pre-8-bold {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 15%;
+}
+
+.txt-pre-9 {
+    font-size: 15px;
+    line-height: 180%;
+}
+
+.txt-pre-1, .txt-pre-2, .txt-pre-3, .txt-pre-4, .txt-pre-6 {
+    font-family: 'BellefairRegular';
+}
+
+.txt-pre-5 {
+    font-family: 'BarlowCondensedRegular';
+    color: var(--blue-300);
+}
+
+.txt-pre-7, .txt-pre-8, .txt-pre-8-bold {
+    font-family: 'BarlowCondensedRegular';
+}
+
+.txt-pre-9 {
+    font-family: 'BarlowRegular';
+}
+
+
+/* Desktop */
+@media (min-width: 640px) {
+    .txt-pre-1 {
+        font-size: 80px;
+    }
+
+    .txt-pre-2 {
+        font-size: 96px;
+    }
+
+    .txt-pre-3 {
+        font-size: 56px;
+    }
+
+    .txt-pre-4 {
+        font-size: 32px;
+    }
+
+    .txt-pre-5 {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+
+    .txt-pre-6 {
+        font-size: 28px;
+    }
+
+    .txt-pre-7 {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+    
+    .txt-pre-9 {
+        font-size: 18px;
+        line-height: 180%;
+    }
+
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .txt-pre-2 {
+        font-size: 80px;
+    }
+
+    .txt-pre-3 {
+        font-size: 40px;
+    }
+    
+    .txt-pre-4 {
+        font-size: 24px;
+    }
+    
+    .txt-pre-5 {
+        font-size: 20x;
+        letter-spacing: 15%;
+    }
+}

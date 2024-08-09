@@ -8,7 +8,7 @@ export default {
     colors: {
       'blue': {
         900: '#0B0D17',
-      300: 'D0D6F9'
+        300: '#D0D6F9'
       },
       'white': '#FFFFFF',
     },
