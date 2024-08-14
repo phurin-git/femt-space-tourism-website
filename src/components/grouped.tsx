@@ -35,25 +35,25 @@ export function NavigationGroup() {
             {/* Tablet */}
             <div className='hidden sm:flex  lg:hidden items-center justify-between'>
                 <Logo className='flex-shrink-0 mx-10' />
-                <div className='flex flex-row justify-end gap-12 bg-white bg-opacity-5 px-10 w-full'>
-                    <Navigation Id='00' name='home'/>
-                    <Navigation Id='01' name='destination'/>
-                    <Navigation Id='02' name='crew'/>
-                    <Navigation Id='03' name='technology'/>
+                <div className='flex flex-row justify-end gap-12 bg-white/5 backdrop-blur px-10 w-full'>
+                    <Navigation Id='00' name='home' href='/home'/>
+                    <Navigation Id='01' name='destination' href='/destination'/>
+                    <Navigation Id='02' name='crew' href='/crew'/>
+                    <Navigation Id='03' name='technology' href='/technology'/>
                 </div>
             </div>
 
             {/* Desktop */}
             <div className='hidden lg:flex items-center justify-between pt-10'>
-                <div className='flex flex-row items-center w-full -mr-8'>
-                    <Logo className='flex-shrink-0   mx-16' />
-                    <span className='block w-full h-px bg-[#979797]'></span>
+                <div className='flex flex-row items-center w-full -mr-8 z-10'>
+                    <Logo className='shrink-0 mx-16' />
+                    <span className='bg-[#979797] block w-full h-px'></span>
                 </div>
-                <div className='flex flex-row justify-end gap-12 bg-white bg-opacity-5 min-w-[664px] px-16'>
-                    <Navigation Id='00' name='home'/>
-                    <Navigation Id='01' name='destination'/>
-                    <Navigation Id='02' name='crew'/>
-                    <Navigation Id='03' name='technology'/>
+                <div className='flex flex-row justify-end gap-12 bg-white/5 backdrop-blur min-w-[664px] px-16 z-0'>
+                    <Navigation Id='00' name='home' href='/home'/>
+                    <Navigation Id='01' name='destination' href='/destination'/>
+                    <Navigation Id='02' name='crew' href='/crew'/>
+                    <Navigation Id='03' name='technology' href='/technology'/>
                 </div>
             </div>
         </div>

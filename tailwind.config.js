@@ -26,6 +26,11 @@ export default {
         'technology-desktop': "url('/src/assets/technology/background-technology-desktop.jpg')",
         'technology-mobile': "url('/src/assets/technology/background-technology-mobile.jpg')",
         'technology-tablet': "url('/src/assets/technology/background-technology-tablet.jpg')",
+      },
+      fontFamily: {
+        barlow: ['"BarlowRegular"', "sans-serif"],
+        barlowcondensed: ['"BarlowCondensedRegular"', "sans-serif"],
+        bellefair: ['"BellefairRegular"', "sans-serif"],
       }
     },
   },

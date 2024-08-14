@@ -8,6 +8,12 @@
     color: white;
 }
 
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 @font-face {
     font-family: 'BellefairRegular';
     src: url('./assets/fonts/Bellefair/Bellefair-Regular.ttf') format('truetype');
@@ -23,41 +29,15 @@
     src: url('./assets/fonts/Barlow/Barlow-Regular.ttf') format('truetype');
 }
 
-.txt-pre-1 {
-    font-size: 144px;
-}
-
-.txt-pre-2 {
-    font-size: 56px;
-}
-
-.txt-pre-3 {
-    font-size: 24px;
-}
-
-.txt-pre-4 {
-    font-size: 18px;
-}
-
-.txt-pre-6 {
-    font-size: 16px;
-    letter-spacing: 15%;
-}
-
-.txt-pre-8 {
-    font-size: 16px;
-    letter-spacing: 15%;
+.txt-pre-7 {
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
 .txt-pre-8-bold {
     font-size: 16px;
     font-weight: bold;
-    letter-spacing: 15%;
-}
-
-.txt-pre-9 {
-    font-size: 15px;
-    line-height: 180%;
+    letter-spacing: 2.7px;
 }
 
 .txt-pre-1, .txt-pre-2, .txt-pre-3, .txt-pre-4, .txt-pre-6 {
@@ -77,11 +57,83 @@
     font-family: 'BarlowRegular';
 }
 
-
-/* Desktop */
-@media (min-width: 640px) {
+/* Mobile */
+@media (max-width: 640px) {
     .txt-pre-1 {
         font-size: 80px;
+    }
+
+    .txt-pre-2 {
+        font-size: 56px;
+    }
+
+    .txt-pre-3 {
+        font-size: 24px;
+    }
+
+    .txt-pre-4 {
+        font-size: 18px;
+    }
+
+    .txt-pre-5 {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+
+    .txt-pre-6 {
+        font-size: 16px;
+        letter-spacing: 15%;
+    }
+
+    .txt-pre-8 {
+        font-size: 14px;
+        letter-spacing: 15%;
+    }
+    
+    .txt-pre-9 {
+        font-size: 15px;
+        line-height: 180%;
+    }
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+    .txt-pre-1 {
+        font-size: 144px;
+    }
+    
+    .txt-pre-2 {
+        font-size: 80px;
+    }
+
+    .txt-pre-3 {
+        font-size: 40px;
+    }
+    
+    .txt-pre-4 {
+        font-size: 24px;
+    }
+
+    .txt-pre-5 {
+        font-size: 20px;
+        letter-spacing: 4px;
+    }
+
+    .txt-pre-8 {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .txt-pre-9 {
+        font-size: 16px;
+        line-height: 180%;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .txt-pre-1 {
+        font-size: 144px;
     }
 
     .txt-pre-2 {
@@ -105,8 +157,9 @@
         font-size: 28px;
     }
 
-    .txt-pre-7 {
-        font-size: 14px;
+
+    .txt-pre-8 {
+        font-size: 16px;
         letter-spacing: 2px;
     }
     
@@ -115,24 +168,4 @@
         line-height: 180%;
     }
 
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-    .txt-pre-2 {
-        font-size: 80px;
-    }
-
-    .txt-pre-3 {
-        font-size: 40px;
-    }
-    
-    .txt-pre-4 {
-        font-size: 24px;
-    }
-    
-    .txt-pre-5 {
-        font-size: 20x;
-        letter-spacing: 15%;
-    }
 }
