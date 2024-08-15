@@ -14,6 +14,11 @@ html, body, #root {
     height: 100%;
 }
 
+.mask-img {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+}
+
 @font-face {
     font-family: 'BellefairRegular';
     src: url('./assets/fonts/Bellefair/Bellefair-Regular.ttf') format('truetype');

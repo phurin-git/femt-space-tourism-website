@@ -22,10 +22,7 @@ export default function Crew() {
                         </div>
                     </div>
                     <div className="flex justify-center items-center sm:items-start lg:items-center relative w-full h-full">
-                        <img className='h-[340px] sm:h-[560px] lg:h-[676px]' src="/src/assets/crew/image-douglas-hurley.webp" alt="" />
-                        <div className='flex justify-center items-end absolute top-0 bottom-0 left-0 right-0 w-full h-full'>
-                            <span className='w-full h-1/2 bg-gradient-to-t from-black via-transparent to-transparent opacity-70'></span>
-                        </div>
+                        <img className='mask-img h-[340px] sm:h-[560px] lg:h-[676px]' src="/src/assets/crew/image-douglas-hurley.webp" alt="" />
                     </div>
                 </div>
             </div>
