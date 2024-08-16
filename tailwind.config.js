@@ -13,6 +13,12 @@ export default {
         },
         'white': '#FFFFFF',
       },
+      transitionProperty: {
+        'bg': 'background-image',
+      },
+      transitionDuration: {
+        '600': '600ms',
+      },
       backgroundImage: {
         'home-desktop': "url('/src/assets/home/background-home-desktop.jpg')",
         'home-mobile': "url('/src/assets/home/background-home-mobile.jpg')",

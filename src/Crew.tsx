@@ -8,7 +8,7 @@ export default function Crew(props: any) {
         initial: { opacity: 0 },
         animate: { opacity: 1},
         exit: { opacity: 0},
-        transition: { duration: 0.3, ease: 'easeOut' }
+        transition: { duration: 0.6, ease: 'easeInOut' }
     }
     
     const crews = [
@@ -37,8 +37,6 @@ export default function Crew(props: any) {
             src: "/src/assets/crew/image-anousheh-ansari.webp"
         }
     ]
-
-    const crewPane = document.getElementById('crew-pane')?.addEventListener('touchmove', () => {})
 
     return (
         <div className={`${props.className || ''} flex grow justify-center p-6 sm:p-10 lg:py-12 w-full min-h-full`}>

@@ -9,12 +9,12 @@ export function NavigationGroup(props: any) {
     const handleNavPane = () => {
         const navPane = document.getElementById('nav-pane')
         if (navState){
-            navPane?.classList.add('translate-x-0')
-            navPane?.classList.remove('translate-x-full')
+            navPane?.classList.add('-right-0')
+            navPane?.classList.remove('-right-full')
         }
         else {
-            navPane?.classList.add('translate-x-full')
-            navPane?.classList.remove('translate-x-0')
+            navPane?.classList.add('-right-full')
+            navPane?.classList.remove('-right-0')
         }
     }
 
@@ -35,16 +35,16 @@ export function NavigationGroup(props: any) {
                     <Navigation Id='03' name='technology' href='/technology'/>
                 </div>
             </div>
-            <div id="nav-pane" className="bg-[#0B0D17]/15 backdrop-blur absolute sm:hidden top-0 -right-0 z-20 h-full transition-all duration-[600ms]">
+            <div id="nav-pane" className="bg-[#0B0D17]/15 backdrop-blur fixed sm:hidden top-0 z-20 h-full transition-all duration-[600ms]">
                 <div className="flex flex-col items-end w-[254px] h-[812px]">
                     <button onClick={() => setNavState(false)}>
                         <img className="w-6 h-[21px] mx-6 my-8 " src={ close } alt="" />
                     </button>
                     <div className='flex flex-col my-12 space-y-8'>
-                        <Navigation Id='00' name='home' href='/home'/>
-                        <Navigation Id='01' name='destination' href='/destination'/>
-                        <Navigation Id='02' name='crew' href='/crew'/>
-                        <Navigation Id='03' name='technology' href='/technology'/>
+                        <Navigation Id='00' name='home' href='/home' onClick={() => setNavState(false)}/>
+                        <Navigation Id='01' name='destination' href='/destination' onClick={() => setNavState(false)}/>
+                        <Navigation Id='02' name='crew' href='/crew' onClick={() => setNavState(false)}/>
+                        <Navigation Id='03' name='technology' href='/technology' onClick={() => setNavState(false)}/>
                     </div>
                 </div>
             </div>
