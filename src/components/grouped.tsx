@@ -20,6 +20,21 @@ export function NavigationGroup(props: any) {
 
     useEffect(handleNavPane, [navState])
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const navPane = document.getElementById('nav-pane');
+            if (navPane && !navPane.contains(event.target as Node)) {
+                setNavState(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className={`${props.className || ''}`}>
             <div className='flex items-center justify-between p-6 sm:p-0 lg:pt-10'>
