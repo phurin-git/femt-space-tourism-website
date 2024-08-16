@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion';
 import { SmallPaginationGroup } from './components/grouped'
 
 export default function Crew(props: any) {
     const [crewIndex, setCrewIndex] = useState(0)
+    const [xDown, setXDown] = useState(null)
+    const [yDown, setYDown] = useState(null)
+    const [xUp, setXUp] = useState(null)
+    const [yUp, setYUp] = useState(null)
+
     const animateConfig = {
         initial: { opacity: 0 },
         animate: { opacity: 1},
@@ -37,6 +42,46 @@ export default function Crew(props: any) {
             src: "/src/assets/crew/image-anousheh-ansari.webp"
         }
     ]
+
+    const handleTouchStart = (e: any) => {
+        setXDown(e.touches[0].clientX)
+        setYDown(e.touches[0].clientY)
+    }
+
+    const handleTouchMove = (e: any) => {
+        if (!xDown || !yDown) return;
+        setXUp(e.touches[0].clientX)
+        setYUp(e.touches[0].clientY)
+    }
+
+    const handleTouchEnd = () => {
+        if (!xDown || !yDown || !xUp || !yUp) return;
+        const xDiff = xDown - xUp
+        const yDiff = yDown - yUp
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff > 0) {
+                setCrewIndex((crewIndex + 1) % 4)
+            } else {
+                setCrewIndex((crewIndex - 1 + 4) % 4)
+            }
+        }
+        setXDown(null)
+        setYDown(null)
+        setXUp(null)
+        setYUp(null)
+    }
+
+    useEffect(() => {
+        window.addEventListener('touchstart', handleTouchStart)
+        window.addEventListener('touchmove', handleTouchMove)
+        window.addEventListener('touchend', handleTouchEnd)
+        return () => {
+            window.removeEventListener('touchstart', handleTouchStart)
+            window.removeEventListener('touchmove', handleTouchMove)
+            window.removeEventListener('touchend', handleTouchEnd)
+        }
+    }, [xDown, yDown, xUp, yUp])
 
     return (
         <div className={`${props.className || ''} flex grow justify-center p-6 sm:p-10 lg:py-12 w-full min-h-full`}>
