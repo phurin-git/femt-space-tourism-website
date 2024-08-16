@@ -1,4 +1,5 @@
 import {DisplayButton} from './components/single'
+
 export default function Home() {
     return (
         <div className='flex grow justify-center p-6 sm:px-10 lg:px-0 sm:py-32 min-w-full min-h-full'>

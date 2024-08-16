@@ -1,11 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, RouterProvider} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
 import Home from './home'
 import Destination from './destination'
 import Crew from './crew'
-// @ts-ignore
 import Technology from './technology'
 import ErrorPage from "./error-page"
 import './index.css'
@@ -13,8 +12,8 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: 
-    <div className="bg-home-mobile sm:bg-home-tablet lg:bg-home-desktop bg-cover bg-fixed flex flex-col grow min-h-full">
+    element:
+    <div className="bg-home-mobile sm:bg-home-tablet lg:bg-home-desktop bg-cover bg-fixed flex flex-col grow w-screen min-h-full">
       <NavigationGroup />
       <Home />
     </div>,
@@ -23,7 +22,8 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: 
-    <div className="bg-home-mobile sm:bg-home-tablet lg:bg-home-desktop bg-cover bg-fixed flex flex-col grow min-h-full">
+    <div className="bg-home-mobile sm:bg-home-tablet lg:bg-home-desktop bg-cover bg-fixed flex flex-col grow min-h-full"
+    >
       <NavigationGroup />
       <Home />
     </div>,
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
     </div>,
     errorElement: <ErrorPage />,
   },
-]);
+])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
