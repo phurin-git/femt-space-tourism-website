@@ -80,11 +80,11 @@ export const App = () => {
       <NavigationGroup />
       <Routes>
           <Route path='/' element={<Home />}>
-            <Route path='/femt-space-tourism-website/' element={<Home />}/>
-            <Route path='/femt-space-tourism-website/home' element={<Home />}/>
-            <Route path='/femt-space-tourism-website/destination' element={<Destination />}/>
-            <Route path='/femt-space-tourism-website/crew' element={<Crew />}/>
-            <Route path='/femt-space-tourism-website/technology' element={<Technology />}/>
+            <Route path='/' element={<Home />}/>
+            <Route path='/home' element={<Home />}/>
+            <Route path='/destination' element={<Destination />}/>
+            <Route path='/crew' element={<Crew />}/>
+            <Route path='/technology' element={<Technology />}/>
           </Route>
       </Routes>
     </div>
