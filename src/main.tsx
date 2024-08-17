@@ -2,6 +2,7 @@ import { useEffect, useCallback, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
+import { getDevPath } from './utils/utils'
 import Home from './Home'
 import Destination from './Destination'
 import Crew from './Crew'
@@ -97,13 +98,13 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={getDevPath('/')}>
     <App />
   </BrowserRouter>
 );
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={getDevPath('/')}>
     <App />
   </BrowserRouter>
 );
