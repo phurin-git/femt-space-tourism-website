@@ -5,35 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Redirecting...</title>
         <script type="text/javascript">
-            // List of paths that are valid in your React Router setup
             const pathlocation = window.location;
             const pathname = pathlocation.pathname;
             const myRepoName = pathname.substring(0, pathname.lastIndexOf('/'));
+            const currentRoute = pathname.substring(pathname.lastIndexOf('/'));
+
+            // List of paths that are valid in your React Router setup
             const validRoutes = [
                 '/home',
                 '/destination',
                 '/crew',
                 '/technology',
-              // Add more paths here
+              // Add more routes here
             ];
 
-            // Get the current path and the search/query parameters
-            const currentRoute = pathname.substring(pathname.lastIndexOf('/'));
-            const searchParams = new URLSearchParams(pathlocation.search);
-            
-            // Check if the redirection has already been attempted
-            if (!searchParams.has('redirected')) {
-                // Check if the current path is valid
-                if (validRoutes .includes(currentRoute)) {
-                    // Add a query parameter to indicate that a redirection has occurred
-                    searchParams.set('redirected', 'true');
-                    const newUrl = `${myRepoName}/?${currentRoute}`;
-                    pathlocation.replace(newUrl);
-                } else {
-                    // Redirect to a custom error page
-                    pathlocation.replace(`${myRepoName}/?/error`);
-                }
-            };
+            // Check if the current path is valid
+            if (validRoutes.includes(currentRoute)) {
+                // Add a query parameter to indicate that a redirection has occurred
+                const newUrl = `${myRepoName}/?${currentRoute}${pathlocation.search ? "&" + pathlocation.search.substring(1).replace(/&/g, "~and~") : ""}${pathlocation.hash}`;
+                pathlocation.replace(newUrl);
+            } else {
+                // Redirect to a custom error page
+                const newUrl = `${myRepoName}/?/error${pathlocation.search ? "&" + pathlocation.search.substring(1).replace(/&/g, "~and~") : ""}${pathlocation.hash}`;
+                pathlocation.replace(newUrl);
+            }
         </script>
     </head>
     <body></body>
