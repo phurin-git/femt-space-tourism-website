@@ -5,8 +5,17 @@
     <link rel="shortcut icon" href="/femt-space-tourism-website/favicon-32x32.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Space Tourism Website</title>
-    <script type="module" crossorigin src="/femt-space-tourism-website/assets/index-CYLF6noz.js"></script>
-    <link rel="stylesheet" crossorigin href="/femt-space-tourism-website/assets/index-CpDjd6rc.css">
+    <script type="text/javascript">
+      ((location) => {
+        if (location.search[1] === "/") {
+          // const decoded = location.search.slice(1).split("&").map((value) => value.replace(/~and~/g, "&")).join("?");
+          const decoded = decodeURIComponent(location.search.slice(1).replace(/~and~/g, "&")); // decodeURIComponent is more robust
+          window.history.replaceState(null, null, location.pathname.slice(0, -1) + decoded + location.hash);
+        }
+      })(window.location);
+    </script>
+    <script type="module" crossorigin src="/femt-space-tourism-website/assets/index-BAFV7h8R.js"></script>
+    <link rel="stylesheet" crossorigin href="/femt-space-tourism-website/assets/index-C42OilrT.css">
   </head>
   <body>
     <div id="root"></div>

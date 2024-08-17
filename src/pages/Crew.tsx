@@ -61,14 +61,12 @@ export default function Crew(props: CrewProps): JSX.Element {
     const handleTouchStart = useCallback((e: TouchEvent) => {
         setXDown(e.touches[0].clientX)
         setYDown(e.touches[0].clientY)
-        console.log('touch start')
     }, [])
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
         if (!xDown || !yDown) return
         setXUp(e.touches[0].clientX)
         setYUp(e.touches[0].clientY)
-        console.log('touch move')
     }, [xDown, yDown])
 
     const handleTouchEnd = useCallback(() => {
