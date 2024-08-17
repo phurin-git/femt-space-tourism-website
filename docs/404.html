@@ -24,7 +24,7 @@
             // Check if the redirection has already been attempted
             if (!searchParams.has('redirected')) {
                 // Check if the current path is valid
-                if (validPaths.includes(currentPath)) {
+                if (validRoutes .includes(currentPath)) {
                     // Add a query parameter to indicate that a redirection has occurred
                     searchParams.set('redirected', 'true');
                     const newUrl = `${myRepoName}/?${currentRoute}`;
