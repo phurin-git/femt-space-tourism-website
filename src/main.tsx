@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import Destination from './pages/Destination'
 import Crew from './pages/Crew'
 import Technology from './pages/Technology'
-import ErrorPage from "./pages/error-page"
 import './index.css'
 import hamburger from './assets/shared/icon-hamburger.svg'
 import close from './assets/shared/icon-close.svg'
@@ -80,11 +79,12 @@ export const App = () => {
     <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
       <NavigationGroup />
       <Routes>
-          <Route path='/' element={<Home />} errorElement={<ErrorPage />}>
-            <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
-            <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
-            <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
-            <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
+          <Route path='/' element={<Home />}>
+            <Route path='/' element={<Home />}/>
+            <Route path='/home' element={<Home />}/>
+            <Route path='/destination' element={<Destination />}/>
+            <Route path='/crew' element={<Crew />}/>
+            <Route path='/technology' element={<Technology />}/>
           </Route>
       </Routes>
     </div>
