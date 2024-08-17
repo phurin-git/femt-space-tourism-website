@@ -97,7 +97,7 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.DEV ? '/' : '/my-vite-react-app/'}>
     <App />
   </BrowserRouter>
 );

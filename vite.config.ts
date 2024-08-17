@@ -2,10 +2,18 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '', // Change this to your desired base path for run "npm run preview"
-  build: {
-    outDir: 'docs', // Change this to your desired output directory for run "npm run build"
-  },
-})
+export default defineConfig(({ command }) => {
+  const config = {
+      plugins: [react()],
+      base: '/',
+      build: {
+          outDir: 'docs', // Change this to your desired output directory for run "npm run build"
+      },
+  };
+
+  if (command !== 'serve') {
+      config.base = '/femt-space-tourism-website/';
+  }
+
+  return config;
+});
