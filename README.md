@@ -50,3 +50,5 @@ Users should be able to:
 - [@senta](https://codepen.io/senta) - [Dissolve Effect](https://codepen.io/senta/pen/XENWwo)
 - [Hengjie](https://stackoverflow.com/users/914986/hengjie?tab=profile) - [CSS3 background image transition](https://stackoverflow.com/questions/9483364/css3-background-image-transition)
 - [givanse](https://stackoverflow.com/users/7852/givanse) - [Detect a finger swipe through JavaScript on the iPhone and Android](https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android?newreg=159063c9dc2841c7b9786191044ea1e0)
+- [@ErickKS](https://github.com/ErickKS) - [Guide for vite react app with router deploy on gitpage](https://github.com/ErickKS/vite-react-router)
+- [Paul Serban](https://paulserban.eu/) - [Deploy Vite React with React Router App to GitHub Pages](https://paulserban.eu/blog/post/deploy-vite-react-with-react-router-app-to-github-pages/)
