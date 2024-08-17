@@ -5,27 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Redirecting...</title>
         <script type="text/javascript">
-            // List of paths that are valid in your React Router setup
-            const myRepoName = '/femt-space-tourism-website';
-            const validPaths = [
-                '/home',
-                '/destination',
-                '/crew',
-                '/technology',
-              // Add more paths here
-            ]
+            var pathSegmentsToKeep = 1;
 
-            // Get the current path
-            const currentPath = window.location.pathname.replace(myRepoName, '');
-
-            // Check if the current path is valid
-            if (validPaths.includes(currentPath)) {
-              // Redirect to the correct route (React Router will handle it)
-              window.location.href(myRepoName + currentPath);
-            } else {
-              // Redirect to a custom error page
-              window.location.href(`${myRepoName}/error`);
-            }
+            var l = window.location;
+            l.replace(
+              l.protocol +
+                "//" +
+                l.hostname +
+                (l.port ? ":" + l.port : "") +
+                l.pathname
+                  .split("/")
+                  .slice(0, 1 + pathSegmentsToKeep)
+                  .join("/") +
+                "/?/" +
+                l.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") +
+                (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+                l.hash
+            );
         </script>
     </head>
     <body></body>
