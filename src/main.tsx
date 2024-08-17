@@ -1,11 +1,12 @@
 import { useEffect, useCallback, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
+import { BrowserRouter, Routes, Route, useLocation, Outlet} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
 import Home from './pages/Home'
 import Destination from './pages/Destination'
 import Crew from './pages/Crew'
 import Technology from './pages/Technology'
+import Error from './pages/Error'
 import './index.css'
 import hamburger from './assets/shared/icon-hamburger.svg'
 import close from './assets/shared/icon-close.svg'
@@ -76,35 +77,26 @@ export const App = () => {
   }, [])
   
   return (
-    <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
-      <NavigationGroup />
+    <BrowserRouter basename="/femt-space-tourism-website/">
       <Routes>
-          <Route path='/' element={<Home />}>
-            <Route path='/' element={<Home />}/>
-            <Route path='/home' element={<Home />}/>
-            <Route path='/destination' element={<Destination />}/>
-            <Route path='/crew' element={<Crew />}/>
-            <Route path='/technology' element={<Technology />}/>
+          <Route path='/' element={
+            <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
+              <NavigationGroup />
+              <Outlet />
+            </div>
+          } errorElement={<Error />}>
+            <Route path='/' element={<Home />} errorElement={<Error />}/>
+            <Route path='/home' element={<Home />} errorElement={<Error />}/>
+            <Route path='/destination' element={<Destination />} errorElement={<Error />}/>
+            <Route path='/crew' element={<Crew />} errorElement={<Error />}/>
+            <Route path='/technology' element={<Technology />} errorElement={<Error />}/>
           </Route>
       </Routes>
-    </div>
+    </BrowserRouter>
   )
 }
 
-const container = document.getElementById('root')
-if (!container) {
-  throw new Error('Root container missing in index.html')
-}
+const container = document.getElementById('root')!
 const root = createRoot(container)
 
-root.render(
-  <BrowserRouter basename="/femt-space-tourism-website/">
-    <App />
-  </BrowserRouter>
-)
-
-root.render(
-  <BrowserRouter basename="/femt-space-tourism-website/">
-    <App />
-  </BrowserRouter>
-)
+root.render(<App />)
