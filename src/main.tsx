@@ -80,11 +80,12 @@ export const App = () => {
     <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
       <NavigationGroup />
       <Routes>
-          <Route path='/' element={<Home />} errorElement={<ErrorPage />}/>
-          <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
-          <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
-          <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
-          <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
+          <Route path='/' element={<Home />} errorElement={<ErrorPage />}>
+            <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
+            <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
+            <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
+            <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
+          </Route>
       </Routes>
     </div>
   )
