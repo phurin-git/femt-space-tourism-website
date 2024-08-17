@@ -18,7 +18,8 @@
                 '/technology',
               // Add more routes here
             ];
-
+            pathlocation.href = `${myRepoName}${currentRoute}`;
+            /*
             // Check if the current path is valid
             if (validRoutes.includes(currentRoute)) {
                 // Add a query parameter to indicate that a redirection has occurred
@@ -29,6 +30,7 @@
                 const newUrl = `${myRepoName}/?/error${pathlocation.search ? "&" + pathlocation.search.substring(1).replace(/&/g, "~and~") : ""}${pathlocation.hash}`;
                 pathlocation.replace(newUrl);
             }
+            */
         </script>
     </head>
     <body></body>
