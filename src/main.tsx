@@ -2,12 +2,11 @@ import { useEffect, useCallback, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
-import { getDevPath } from './utils/utils'
-import Home from './Home'
-import Destination from './Destination'
-import Crew from './Crew'
-import Technology from './Technology'
-import ErrorPage from "./error-page"
+import Home from './pages/Home'
+import Destination from './pages/Destination'
+import Crew from './pages/Crew'
+import Technology from './pages/Technology'
+import ErrorPage from "./pages/error-page"
 import './index.css'
 import hamburger from './assets/shared/icon-hamburger.svg'
 import close from './assets/shared/icon-close.svg'
@@ -46,65 +45,65 @@ export const App = () => {
     destination: ['bg-destination-mobile', 'sm:bg-destination-tablet', 'lg:bg-destination-desktop'],
     crew: ['bg-crew-mobile', 'sm:bg-crew-tablet', 'lg:bg-crew-desktop'],
     technology: ['bg-technology-mobile', 'sm:bg-technology-tablet', 'lg:bg-technology-desktop']
-  }), []);
+  }), [])
 
   const updateBackgroundClasses = useCallback((element: HTMLElement | null, classes: string[]) => {
-    if (!element) return;
+    if (!element) return
   
     // Remove all background classes
-    Object.values(backgroundClasses).flat().forEach(cls => element.classList.remove(cls));
+    Object.values(backgroundClasses).flat().forEach(cls => element.classList.remove(cls))
   
     // Add new background classes
-    classes.forEach(cls => element.classList.add(cls));
-  }, [backgroundClasses]);
+    classes.forEach(cls => element.classList.add(cls))
+  }, [backgroundClasses])
 
   useEffect(() => {
-    const bg = document.getElementById('bg');
-    const classes = backgroundClasses[pathname] || backgroundClasses['home'];
-    updateBackgroundClasses(bg, classes);
-  }, [pathname, backgroundClasses, updateBackgroundClasses]);
+    const bg = document.getElementById('bg')
+    const classes = backgroundClasses[pathname] || backgroundClasses['home']
+    updateBackgroundClasses(bg, classes)
+  }, [pathname, backgroundClasses, updateBackgroundClasses])
 
   // Function to preload images
   const preloadImages = (imageUrls: string[]) => {
     imageUrls.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-    });
-  };
+        const img = new Image()
+        img.src = url
+    })
+  }
 
   // Preload images when component mounts
   useEffect(() => {
-      preloadImages([hamburger, close, moon, mars, europa, titan, space_capsule_landscape, space_capsule_portrait, launch_vehicle_landscape, launch_vehicle_portrait, spaceport_landscape, spaceport_portrait, douglas_hurley, mark_shuttleworth, victor_glover, anousheh_ansari, home_desktop, home_tablet, home_mobile, destination_desktop, destination_tablet, destination_mobile, crew_desktop, crew_tablet, crew_mobile, technology_desktop, technology_tablet, technology_mobile]);
-  }, []);
+      preloadImages([hamburger, close, moon, mars, europa, titan, space_capsule_landscape, space_capsule_portrait, launch_vehicle_landscape, launch_vehicle_portrait, spaceport_landscape, spaceport_portrait, douglas_hurley, mark_shuttleworth, victor_glover, anousheh_ansari, home_desktop, home_tablet, home_mobile, destination_desktop, destination_tablet, destination_mobile, crew_desktop, crew_tablet, crew_mobile, technology_desktop, technology_tablet, technology_mobile])
+  }, [])
   
   return (
-    <Routes>
-      <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
-        <NavigationGroup />
-        <Route path='/' element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
-        <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
-        <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
-      </div>
-    </Routes>
+    <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
+      <NavigationGroup />
+      <Routes>
+          <Route path='/' element={<Home />} errorElement={<ErrorPage />}/>
+          <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
+          <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
+          <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
+          <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
+      </Routes>
+    </div>
   )
 }
 
-const container = document.getElementById('root');
+const container = document.getElementById('root')
 if (!container) {
-  throw new Error('Root container missing in index.html');
+  throw new Error('Root container missing in index.html')
 }
-const root = createRoot(container);
+const root = createRoot(container)
 
 root.render(
-  <BrowserRouter basename={getDevPath('/')}>
+  <BrowserRouter basename="/femt-space-tourism-website/">
     <App />
   </BrowserRouter>
-);
+)
 
 root.render(
-  <BrowserRouter basename={getDevPath('/')}>
+  <BrowserRouter basename="/femt-space-tourism-website/">
     <App />
   </BrowserRouter>
-);
+)

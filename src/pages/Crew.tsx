@@ -1,35 +1,35 @@
 import { useEffect, useState, useCallback } from 'react'
-import { motion } from 'framer-motion';
-import { SmallPaginationGroup } from './components/grouped'
-import douglas_hurley from './assets/crew/image-douglas-hurley.webp'
-import mark_shuttleworth from './assets/crew/image-mark-shuttleworth.webp'
-import victor_glover from './assets/crew/image-victor-glover.webp'
-import anousheh_ansari from './assets/crew/image-anousheh-ansari.webp'
+import { motion } from 'framer-motion'
+import { SmallPaginationGroup } from '../components/grouped'
+import douglas_hurley from '../assets/crew/image-douglas-hurley.webp'
+import mark_shuttleworth from '../assets/crew/image-mark-shuttleworth.webp'
+import victor_glover from '../assets/crew/image-victor-glover.webp'
+import anousheh_ansari from '../assets/crew/image-anousheh-ansari.webp'
 
 interface CrewMember {
-    name: string;
-    position: string;
-    description: string;
-    src: string;
+    name: string
+    position: string
+    description: string
+    src: string
 }
 
 interface CrewProps {
-    className?: string;
+    className?: string
 }
 
 export default function Crew(props: CrewProps): JSX.Element {
-    const [crewIndex, setCrewIndex] = useState<number>(0);
-    const [xDown, setXDown] = useState<number | null>(null);
-    const [yDown, setYDown] = useState<number | null>(null);
-    const [xUp, setXUp] = useState<number | null>(null);
-    const [yUp, setYUp] = useState<number | null>(null);
+    const [crewIndex, setCrewIndex] = useState<number>(0)
+    const [xDown, setXDown] = useState<number | null>(null)
+    const [yDown, setYDown] = useState<number | null>(null)
+    const [xUp, setXUp] = useState<number | null>(null)
+    const [yUp, setYUp] = useState<number | null>(null)
 
     const animateConfig = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
         transition: { duration: 0.6, ease: 'easeInOut' }
-    };
+    }
 
     const crews: CrewMember[] = [
         {
@@ -56,49 +56,49 @@ export default function Crew(props: CrewProps): JSX.Element {
             description: "Anousheh Ansari is an Iranian American engineer and co-founder of Prodea Systems. Ansari was the fourth self-funded space tourist, the first self-funded woman to fly to the ISS, and the first Iranian in space.",
             src: anousheh_ansari
         }
-    ];
+    ]
 
     const handleTouchStart = useCallback((e: TouchEvent) => {
-        setXDown(e.touches[0].clientX);
-        setYDown(e.touches[0].clientY);
-        console.log('touch start');
-    }, []);
+        setXDown(e.touches[0].clientX)
+        setYDown(e.touches[0].clientY)
+        console.log('touch start')
+    }, [])
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
-        if (!xDown || !yDown) return;
-        setXUp(e.touches[0].clientX);
-        setYUp(e.touches[0].clientY);
-        console.log('touch move');
-    }, [xDown, yDown]);
+        if (!xDown || !yDown) return
+        setXUp(e.touches[0].clientX)
+        setYUp(e.touches[0].clientY)
+        console.log('touch move')
+    }, [xDown, yDown])
 
     const handleTouchEnd = useCallback(() => {
-        if (!xDown || !yDown || !xUp || !yUp) return;
-        const xDiff = xDown - xUp;
-        const yDiff = yDown - yUp;
+        if (!xDown || !yDown || !xUp || !yUp) return
+        const xDiff = xDown - xUp
+        const yDiff = yDown - yUp
 
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
             if (xDiff > 0) {
-                setCrewIndex((crewIndex + 1) % 4);
+                setCrewIndex((crewIndex + 1) % 4)
             } else {
-                setCrewIndex((crewIndex - 1 + 4) % 4);
+                setCrewIndex((crewIndex - 1 + 4) % 4)
             }
         }
-        setXDown(null);
-        setYDown(null);
-        setXUp(null);
-        setYUp(null);
-    }, [xDown, yDown, xUp, yUp, crewIndex]);
+        setXDown(null)
+        setYDown(null)
+        setXUp(null)
+        setYUp(null)
+    }, [xDown, yDown, xUp, yUp, crewIndex])
 
     useEffect(() => {
-        window.addEventListener('touchstart', handleTouchStart);
-        window.addEventListener('touchmove', handleTouchMove);
-        window.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('touchstart', handleTouchStart)
+        window.addEventListener('touchmove', handleTouchMove)
+        window.addEventListener('touchend', handleTouchEnd)
         return () => {
-            window.removeEventListener('touchstart', handleTouchStart);
-            window.removeEventListener('touchmove', handleTouchMove);
-            window.removeEventListener('touchend', handleTouchEnd);
-        };
-    }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+            window.removeEventListener('touchstart', handleTouchStart)
+            window.removeEventListener('touchmove', handleTouchMove)
+            window.removeEventListener('touchend', handleTouchEnd)
+        }
+    }, [handleTouchStart, handleTouchMove, handleTouchEnd])
 
     return (
         <div className={`${props.className || ''} flex grow justify-center p-6 sm:p-10 lg:py-12 w-full min-h-full`}>
@@ -136,5 +136,5 @@ export default function Crew(props: CrewProps): JSX.Element {
                 </div>
             </div>
         </div>
-    );
+    )
 }

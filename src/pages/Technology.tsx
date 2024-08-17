@@ -1,41 +1,44 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { LargePaginationGroup } from './components/grouped'
-import space_capsule_landscape from './assets/technology/image-space-capsule-landscape.jpg'
-import space_capsule_portrait from './assets/technology/image-space-capsule-portrait.jpg'
-import launch_vehicle_landscape from './assets/technology/image-launch-vehicle-landscape.jpg'
-import launch_vehicle_portrait from './assets/technology/image-launch-vehicle-portrait.jpg'
-import spaceport_landscape from './assets/technology/image-spaceport-landscape.jpg'
-import spaceport_portrait from './assets/technology/image-spaceport-portrait.jpg'
+import { LargePaginationGroup } from '../components/grouped'
+import space_capsule_landscape from '../assets/technology/image-space-capsule-landscape.jpg'
+import space_capsule_portrait from '../assets/technology/image-space-capsule-portrait.jpg'
+import launch_vehicle_landscape from '../assets/technology/image-launch-vehicle-landscape.jpg'
+import launch_vehicle_portrait from '../assets/technology/image-launch-vehicle-portrait.jpg'
+import spaceport_landscape from '../assets/technology/image-spaceport-landscape.jpg'
+import spaceport_portrait from '../assets/technology/image-spaceport-portrait.jpg'
 
 export interface TechnologyProps {
-    className?: string;
+    className?: string
 }
 
 interface Technology {
-    name: string;
-    description: string;
-    src: string[];
+    name: string
+    description: string
+    src: string[]
 }
 
 export default function Technology(props: TechnologyProps) {
-    const [technologyIndex, setTechnologyIndex] = useState<number>(0);
-    const [xDown, setXDown] = useState<number | null>(null);
-    const [yDown, setYDown] = useState<number | null>(null);
-    const [xUp, setXUp] = useState<number | null>(null);
-    const [yUp, setYUp] = useState<number | null>(null);
+    const [technologyIndex, setTechnologyIndex] = useState<number>(0)
+    const [xDown, setXDown] = useState<number | null>(null)
+    const [yDown, setYDown] = useState<number | null>(null)
+    const [xUp, setXUp] = useState<number | null>(null)
+    const [yUp, setYUp] = useState<number | null>(null)
 
     const animateConfig: {
-        initial: { opacity: number };
-        animate: { opacity: number };
-        exit: { opacity: number };
-        transition: { duration: number; ease: string };
+        initial: { opacity: number }
+        animate: { opacity: number }
+        exit: { opacity: number }
+        transition: {
+            duration: number
+            ease: string
+        }
     } = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
         transition: { duration: 0.6, ease: 'easeInOut' },
-    };
+    }
 
     const technologies: Technology[] = [
         {
@@ -53,47 +56,47 @@ export default function Technology(props: TechnologyProps) {
             description: "A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth's atmosphere without wings. Our capsule is where you'll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.",
             src: [space_capsule_landscape, space_capsule_portrait],
         },
-    ];
+    ]
 
     const handleTouchStart = useCallback((e: TouchEvent) => {
-        setXDown(e.touches[0].clientX);
-        setYDown(e.touches[0].clientY);
-    }, []);
+        setXDown(e.touches[0].clientX)
+        setYDown(e.touches[0].clientY)
+    }, [])
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
-        if (!xDown || !yDown) return;
-        setXUp(e.touches[0].clientX);
-        setYUp(e.touches[0].clientY);
-    }, [xDown, yDown]);
+        if (!xDown || !yDown) return
+        setXUp(e.touches[0].clientX)
+        setYUp(e.touches[0].clientY)
+    }, [xDown, yDown])
 
     const handleTouchEnd = useCallback(() => {
-        if (!xDown || !yDown || !xUp || !yUp) return;
-        const xDiff = xDown - xUp;
-        const yDiff = yDown - yUp;
+        if (!xDown || !yDown || !xUp || !yUp) return
+        const xDiff = xDown - xUp
+        const yDiff = yDown - yUp
 
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
             if (xDiff > 0) {
-                setTechnologyIndex((technologyIndex + 1) % 3);
+                setTechnologyIndex((technologyIndex + 1) % 3)
             } else {
-                setTechnologyIndex((technologyIndex - 1 + 3) % 3);
+                setTechnologyIndex((technologyIndex - 1 + 3) % 3)
             }
         }
-        setXDown(null);
-        setYDown(null);
-        setXUp(null);
-        setYUp(null);
-    }, [technologyIndex, xDown, yDown, xUp, yUp]);
+        setXDown(null)
+        setYDown(null)
+        setXUp(null)
+        setYUp(null)
+    }, [technologyIndex, xDown, yDown, xUp, yUp])
 
     useEffect(() => {
-        window.addEventListener('touchstart', handleTouchStart);
-        window.addEventListener('touchmove', handleTouchMove);
-        window.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('touchstart', handleTouchStart)
+        window.addEventListener('touchmove', handleTouchMove)
+        window.addEventListener('touchend', handleTouchEnd)
         return () => {
-            window.removeEventListener('touchstart', handleTouchStart);
-            window.removeEventListener('touchmove', handleTouchMove);
-            window.removeEventListener('touchend', handleTouchEnd);
-        };
-    }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
+            window.removeEventListener('touchstart', handleTouchStart)
+            window.removeEventListener('touchmove', handleTouchMove)
+            window.removeEventListener('touchend', handleTouchEnd)
+        }
+    }, [handleTouchStart, handleTouchMove, handleTouchEnd])
 
     return (
         <div className={`${props.className || ''} flex flex-row grow justify-end overflow-hidden px-6 py-12 sm:p-10 lg:py-12 w-full min-h-full`}>
@@ -131,5 +134,5 @@ export default function Technology(props: TechnologyProps) {
                 </div>
             </div>
         </div>
-    );
+    )
 }

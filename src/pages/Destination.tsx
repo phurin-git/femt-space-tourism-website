@@ -1,36 +1,39 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion';
-import { TabsGroup } from './components/grouped'
-import moon from './assets/destination/image-moon.webp'
-import mars from './assets/destination/image-mars.webp'
-import europa from './assets/destination/image-europa.webp'
-import titan from './assets/destination/image-titan.webp'
+import { motion } from 'framer-motion'
+import { TabsGroup } from '../components/grouped'
+import moon from '../assets/destination/image-moon.webp'
+import mars from '../assets/destination/image-mars.webp'
+import europa from '../assets/destination/image-europa.webp'
+import titan from '../assets/destination/image-titan.webp'
 
 export interface Planet {
-    name: string;
-    description: string;
-    distance: string;
-    travelTime: string;
-    src: string;
+    name: string
+    description: string
+    distance: string
+    travelTime: string
+    src: string
 }
 
 interface DestinationProps {
-    className?: string;
+    className?: string
 }
 
 export default function Destination(props: DestinationProps): JSX.Element {
-    const [planetIndex, setPlanetIndex] = useState<number>(0);
+    const [planetIndex, setPlanetIndex] = useState<number>(0)
     const animateConfig: {
-        initial: { opacity: number };
-        animate: { opacity: number };
-        exit: { opacity: number };
-        transition: { duration: number; ease: string };
+        initial: { opacity: number }
+        animate: { opacity: number }
+        exit: { opacity: number }
+        transition: {
+            duration: number
+            ease: string
+        }
     } = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
         transition: { duration: 0.6, ease: 'easeInOut' }
-    };
+    }
 
     const planets: Planet[] = [
         {
@@ -61,7 +64,7 @@ export default function Destination(props: DestinationProps): JSX.Element {
             travelTime: "7 years",
             src: titan
         }
-    ];
+    ]
 
     return (
         <div className={`${props.className || ''} flex grow justify-center p-6 sm:p-10 lg:py-12 w-full min-h-full`}>
@@ -112,5 +115,5 @@ export default function Destination(props: DestinationProps): JSX.Element {
                 </div>
             </div>
         </div>
-    );
+    )
 }

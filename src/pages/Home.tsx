@@ -1,4 +1,4 @@
-import {DisplayButton} from './components/single'
+import {DisplayButton} from '../components/single'
 
 export default function Home() {
     return (
