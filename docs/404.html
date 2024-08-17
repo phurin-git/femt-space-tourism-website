@@ -6,8 +6,10 @@
         <title>Redirecting...</title>
         <script type="text/javascript">
             // List of paths that are valid in your React Router setup
-            const myRepoName = '/femt-space-tourism-website';
-            const validPaths = [
+            const pathlocation = window.location;
+            const pathname = pathlocation.pathname;
+            const myRepoName = pathname.substring(0, pathname.lastIndexOf('/'));
+            const validRoutes = [
                 '/home',
                 '/destination',
                 '/crew',
@@ -16,8 +18,8 @@
             ];
 
             // Get the current path and the search/query parameters
-            const currentPath = window.location.pathname.replace(myRepoName, '');
-            const searchParams = new URLSearchParams(window.location.search);
+            const currentRoute = pathname.substring(pathname.lastIndexOf('/'));
+            const searchParams = new URLSearchParams(pathlocation.search);
             
             // Check if the redirection has already been attempted
             if (!searchParams.has('redirected')) {
@@ -25,13 +27,13 @@
                 if (validPaths.includes(currentPath)) {
                     // Add a query parameter to indicate that a redirection has occurred
                     searchParams.set('redirected', 'true');
-                    const newUrl = `${myRepoName}${currentPath}?${searchParams.toString()}`;
-                    window.location.replace(newUrl);
+                    const newUrl = `${myRepoName}/?${currentRoute}`;
+                    pathlocation.replace(newUrl);
                 } else {
                     // Redirect to a custom error page
-                    window.location.replace(`${myRepoName}/error`);
+                    pathlocation.replace(`${myRepoName}/?/error`);
                 }
-            }
+            };
         </script>
     </head>
     <body></body>

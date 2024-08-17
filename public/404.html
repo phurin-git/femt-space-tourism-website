@@ -27,11 +27,11 @@
                 if (validPaths.includes(currentPath)) {
                     // Add a query parameter to indicate that a redirection has occurred
                     searchParams.set('redirected', 'true');
-                    const newUrl = `${myRepoName}${currentRoute}?${searchParams.toString()}`;
-                    window.location.replace(newUrl);
+                    const newUrl = `${myRepoName}/?${currentRoute}`;
+                    pathlocation.replace(newUrl);
                 } else {
                     // Redirect to a custom error page
-                    window.location.replace(`${myRepoName}/error`);
+                    pathlocation.replace(`${myRepoName}/?/error`);
                 }
             };
         </script>
