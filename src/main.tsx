@@ -2,6 +2,7 @@ import { useEffect, useCallback, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
+import { getDevPath } from './utils/utils'
 import Home from './Home'
 import Destination from './Destination'
 import Crew from './Crew'
@@ -80,11 +81,11 @@ export const App = () => {
     <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
       <NavigationGroup />
       <Routes>
-        <Route path="/" element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path="/home" element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path="/destination" element={<Destination />} errorElement={<ErrorPage />}/>
-        <Route path="/crew" element={<Crew />} errorElement={<ErrorPage />}/>
-        <Route path="/technology" element={<Technology />} errorElement={<ErrorPage />}/>
+        <Route path={getDevPath('/')} element={<Home />} errorElement={<ErrorPage />}/>
+        <Route path={getDevPath('/home')} element={<Home />} errorElement={<ErrorPage />}/>
+        <Route path={getDevPath('/destination')} element={<Destination />} errorElement={<ErrorPage />}/>
+        <Route path={getDevPath('/crew')} element={<Crew />} errorElement={<ErrorPage />}/>
+        <Route path={getDevPath('/technology')} element={<Technology />} errorElement={<ErrorPage />}/>
       </Routes>
       </div>
   )
@@ -97,7 +98,13 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter basename={import.meta.env.DEV ? '/' : '/femt-space-tourism-website/'}>
+  <BrowserRouter basename={getDevPath('/')}>
+    <App />
+  </BrowserRouter>
+);
+
+root.render(
+  <BrowserRouter basename={getDevPath('/')}>
     <App />
   </BrowserRouter>
 );
