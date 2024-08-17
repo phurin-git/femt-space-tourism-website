@@ -78,16 +78,16 @@ export const App = () => {
   }, []);
   
   return (
-    <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
-      <NavigationGroup />
-      <Routes>
-        <Route path={getDevPath('/')} element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path={getDevPath('/home')} element={<Home />} errorElement={<ErrorPage />}/>
-        <Route path={getDevPath('/destination')} element={<Destination />} errorElement={<ErrorPage />}/>
-        <Route path={getDevPath('/crew')} element={<Crew />} errorElement={<ErrorPage />}/>
-        <Route path={getDevPath('/technology')} element={<Technology />} errorElement={<ErrorPage />}/>
-      </Routes>
+    <Routes>
+      <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
+        <NavigationGroup />
+        <Route path='/' element={<Home />} errorElement={<ErrorPage />}/>
+        <Route path='/home' element={<Home />} errorElement={<ErrorPage />}/>
+        <Route path='/destination' element={<Destination />} errorElement={<ErrorPage />}/>
+        <Route path='/crew' element={<Crew />} errorElement={<ErrorPage />}/>
+        <Route path='/technology' element={<Technology />} errorElement={<ErrorPage />}/>
       </div>
+    </Routes>
   )
 }
 
