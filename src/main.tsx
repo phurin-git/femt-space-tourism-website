@@ -98,13 +98,13 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter basename={getDevPath('/')}>
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 );
 
 root.render(
-  <BrowserRouter basename={getDevPath('/')}>
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 );
