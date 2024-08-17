@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script type="text/javascript">
-        // This will redirect to the index.html which will handle routing
-        window.location.href = "/femt-space-tourism-website/";
-    </script>      
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Redirecting...</title>
+        <script type="text/javascript">
+            // List of paths that are valid in your React Router setup
+            const myRepoName = '/femt-space-tourism-website';
+            const validPaths = [
+                '/home',
+                '/destination',
+                '/crew',
+                '/technology',
+              // Add more paths here
+            ]
+        
+            // Get the current path
+            const currentPath = window.location.pathname.replace(myRepoName, '');
+        
+            // Check if the current path is valid
+            if (validPaths.includes(currentPath)) {
+              // Redirect to the correct route (React Router will handle it)
+              window.location.replace(myRepoName + currentPath);
+            } else {
+              // Redirect to a custom error page
+              window.location.replace(`${myRepoName}/error`);
+            }
+        </script>
+    </head>
+    <body></body>
 </html>
