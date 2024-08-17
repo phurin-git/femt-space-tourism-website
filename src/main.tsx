@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import Destination from './pages/Destination'
 import Crew from './pages/Crew'
 import Technology from './pages/Technology'
-import Error from './pages/Error'
 import './index.css'
 import hamburger from './assets/shared/icon-hamburger.svg'
 import close from './assets/shared/icon-close.svg'
@@ -83,12 +82,12 @@ export const App = () => {
               <NavigationGroup />
               <Outlet />
             </div>
-          } errorElement={<Error />}>
-            <Route path='/' element={<Home />} errorElement={<Error />}/>
-            <Route path='/home' element={<Home />} errorElement={<Error />}/>
-            <Route path='/destination' element={<Destination />} errorElement={<Error />}/>
-            <Route path='/crew' element={<Crew />} errorElement={<Error />}/>
-            <Route path='/technology' element={<Technology />} errorElement={<Error />}/>
+          }>
+            <Route path='/' element={<Home />}/>
+            <Route path='/home' element={<Home />}/>
+            <Route path='/destination' element={<Destination />}/>
+            <Route path='/crew' element={<Crew />}/>
+            <Route path='/technology' element={<Technology />}/>
           </Route>
       </Routes>
   )
