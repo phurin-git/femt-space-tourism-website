@@ -77,7 +77,6 @@ export const App = () => {
   }, [])
   
   return (
-    <BrowserRouter basename="/femt-space-tourism-website/">
       <Routes>
           <Route path='/' element={
             <div id='bg' className={`bg-cover bg-fixed flex flex-col grow min-h-full transition-bg duration-600 ease-in-out`}>
@@ -92,11 +91,11 @@ export const App = () => {
             <Route path='/technology' element={<Technology />} errorElement={<Error />}/>
           </Route>
       </Routes>
-    </BrowserRouter>
   )
 }
 
-const container = document.getElementById('root')!
-const root = createRoot(container)
-
-root.render(<App />)
+createRoot(document.getElementById('root')!).render(
+  <BrowserRouter basename="/femt-space-tourism-website/">
+    <App />
+  </BrowserRouter>
+)
