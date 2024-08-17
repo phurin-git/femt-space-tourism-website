@@ -6,16 +6,33 @@ import mars from './assets/destination/image-mars.webp'
 import europa from './assets/destination/image-europa.webp'
 import titan from './assets/destination/image-titan.webp'
 
-export default function Destination(props: any) {
-    const [planetIndex, setPlanetIndex] = useState(0)
-    const animateConfig = {
+export interface Planet {
+    name: string;
+    description: string;
+    distance: string;
+    travelTime: string;
+    src: string;
+}
+
+interface DestinationProps {
+    className?: string;
+}
+
+export default function Destination(props: DestinationProps): JSX.Element {
+    const [planetIndex, setPlanetIndex] = useState<number>(0);
+    const animateConfig: {
+        initial: { opacity: number };
+        animate: { opacity: number };
+        exit: { opacity: number };
+        transition: { duration: number; ease: string };
+    } = {
         initial: { opacity: 0 },
-        animate: { opacity: 1},
-        exit: { opacity: 0},
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
         transition: { duration: 0.6, ease: 'easeInOut' }
-    }
-    
-    const planets = [
+    };
+
+    const planets: Planet[] = [
         {
             name: "moon",
             description: "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
@@ -43,7 +60,8 @@ export default function Destination(props: any) {
             distance: "1.6 bil. km",
             travelTime: "7 years",
             src: titan
-        }]
+        }
+    ];
 
     return (
         <div className={`${props.className || ''} flex grow justify-center p-6 sm:p-10 lg:py-12 w-full min-h-full`}>
@@ -52,18 +70,18 @@ export default function Destination(props: any) {
                 <div className="flex flex-col lg:flex-row gap-8  w-full h-full">
                     <div className="flex justify-center items-center w-full h-full">
                         <motion.div
-                        key={planetIndex}
-                        {...animateConfig}
+                            key={planetIndex}
+                            {...animateConfig}
                         >
                             <img className="size-[150px] sm:size-[300px] lg:size-[480px]" src={planets[planetIndex].src} alt="" />
                         </motion.div>
                     </div>
                     <div className="flex justify-center items-center sm:min-w-[445px] h-fit">
                         <div className='flex flex-col gap-10 justify-between items-center lg:items-start w-full max-w-[514px] lg:max-w-[445px] h-fit'>
-                            <TabsGroup state={planetIndex} onclick={[() => {setPlanetIndex(0)}, () => {setPlanetIndex(1)}, () => {setPlanetIndex(2)}, () => {setPlanetIndex(3)}]}/>
+                            <TabsGroup state={planetIndex} onClick={[() => { setPlanetIndex(0) }, () => { setPlanetIndex(1) }, () => { setPlanetIndex(2) }, () => { setPlanetIndex(3) }]} />
                             <motion.p className='max-lg:text-center gap-4'
-                            key={planetIndex}
-                            {...animateConfig}
+                                key={planetIndex}
+                                {...animateConfig}
                             >
                                 <span className='txt-pre-2 uppercase'>{planets[planetIndex].name}</span><br />
                                 <span className='txt-pre-9 text-blue-300'>{planets[planetIndex].description}</span>
@@ -73,8 +91,8 @@ export default function Destination(props: any) {
                                 <p className='max-lg:text-center w-full'>
                                     <span className='txt-pre-7 uppercase text-blue-300'>AVG. DISTANCE</span><br />
                                     <motion.span className='txt-pre-6 uppercase'
-                                    key={planetIndex}
-                                    {...animateConfig}
+                                        key={planetIndex}
+                                        {...animateConfig}
                                     >
                                         {planets[planetIndex].distance}
                                     </motion.span>
@@ -82,8 +100,8 @@ export default function Destination(props: any) {
                                 <p className='max-lg:text-center w-full'>
                                     <span className='txt-pre-7 uppercase text-blue-300'>Est. travel time</span><br />
                                     <motion.span className='txt-pre-6 uppercase'
-                                    key={planetIndex}
-                                    {...animateConfig}
+                                        key={planetIndex}
+                                        {...animateConfig}
                                     >
                                         {planets[planetIndex].travelTime}
                                     </motion.span>
@@ -94,5 +112,5 @@ export default function Destination(props: any) {
                 </div>
             </div>
         </div>
-    )
+    );
 }

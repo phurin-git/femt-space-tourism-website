@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import { NavigationGroup } from './components/grouped'
-import Home from './home'
-import Destination from './destination'
-import Crew from './crew'
-import Technology from './technology'
+import Home from './Home'
+import Destination from './Destination'
+import Crew from './Crew'
+import Technology from './Technology'
 import ErrorPage from "./error-page"
 import './index.css'
 import hamburger from './assets/shared/icon-hamburger.svg'
@@ -37,16 +37,17 @@ import technology_desktop from './assets/technology/background-technology-deskto
 import technology_tablet from './assets/technology/background-technology-tablet.jpg'
 import technology_mobile from './assets/technology/background-technology-mobile.jpg'
 
-const App = () => {
+export const App = () => {
   const pathname = useLocation().pathname.substring(1)
-  const backgroundClasses: { [key: string]: string[] } = {
+  
+  const backgroundClasses: { [key: string]: string[] } = useMemo(() => ({
     home: ['bg-home-mobile', 'sm:bg-home-tablet', 'lg:bg-home-desktop'],
     destination: ['bg-destination-mobile', 'sm:bg-destination-tablet', 'lg:bg-destination-desktop'],
     crew: ['bg-crew-mobile', 'sm:bg-crew-tablet', 'lg:bg-crew-desktop'],
     technology: ['bg-technology-mobile', 'sm:bg-technology-tablet', 'lg:bg-technology-desktop']
-  }
+  }), []);
 
-  const updateBackgroundClasses = (element: HTMLElement | null, classes: string[]) => {
+  const updateBackgroundClasses = useCallback((element: HTMLElement | null, classes: string[]) => {
     if (!element) return;
   
     // Remove all background classes
@@ -54,13 +55,13 @@ const App = () => {
   
     // Add new background classes
     classes.forEach(cls => element.classList.add(cls));
-  };
+  }, [backgroundClasses]);
 
   useEffect(() => {
     const bg = document.getElementById('bg');
     const classes = backgroundClasses[pathname] || backgroundClasses['home'];
     updateBackgroundClasses(bg, classes);
-  }, [pathname]);
+  }, [pathname, backgroundClasses, updateBackgroundClasses]);
 
   // Function to preload images
   const preloadImages = (imageUrls: string[]) => {
@@ -93,12 +94,7 @@ const container = document.getElementById('root');
 if (!container) {
   throw new Error('Root container missing in index.html');
 }
-
-let root = (container as any)._reactRootContainer;
-if (!root) {
-  root = createRoot(container);
-  (container as any)._reactRootContainer = root;
-}
+const root = createRoot(container);
 
 root.render(
   <BrowserRouter>

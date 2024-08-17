@@ -3,8 +3,12 @@ import hamburger from '../assets/shared/icon-hamburger.svg'
 import close from '../assets/shared/icon-close.svg'
 import { Logo, Navigation, Tabs, LargePagination, SmallPagination } from './single'
 
-export function NavigationGroup(props: any) {
-    const [navState, setNavState] = useState(false)
+export interface NavigationGroupProps {
+    className?: string;
+}
+
+export function NavigationGroup(props: NavigationGroupProps) {
+    const [navState, setNavState] = useState<boolean>(false)
 
     const handleNavPane = () => {
         const navPane = document.getElementById('nav-pane')
@@ -44,10 +48,10 @@ export function NavigationGroup(props: any) {
                 </div>
                 <button className='sm:hidden z-10' onClick={() => setNavState(true)}><img className='w-6 h-[21px]' src={ hamburger } alt="" /></button>
                 <div className='hidden sm:flex flex-row justify-end gap-12 bg-white/5 backdrop-blur lg:min-w-[664px] sm:px-10 lg:px-16 lg:z-0 w-full'>
-                    <Navigation Id='00' name='home' href='/home'/>
-                    <Navigation Id='01' name='destination' href='/destination'/>
-                    <Navigation Id='02' name='crew' href='/crew'/>
-                    <Navigation Id='03' name='technology' href='/technology'/>
+                    <Navigation Id='00' name='home' href='/home' onClick={() => setNavState(false)}/>
+                    <Navigation Id='01' name='destination' href='/destination' onClick={() => setNavState(false)}/>
+                    <Navigation Id='02' name='crew' href='/crew' onClick={() => setNavState(false)}/>
+                    <Navigation Id='03' name='technology' href='/technology' onClick={() => setNavState(false)}/>
                 </div>
             </div>
             <div id="nav-pane" className="bg-[#0B0D17]/15 backdrop-blur fixed sm:hidden top-0 z-20 h-full transition-all duration-[600ms]">
@@ -67,54 +71,65 @@ export function NavigationGroup(props: any) {
     )
 }
 
-export function TabsGroup(props: any) {
-    const [state, setState] = useState([1, 0, 0, 0])
+export interface TabsGroupProps {
+    className?: string;
+    state: number;
+    onClick: ((index: number) => void)[];
+}
+
+export function TabsGroup(props: TabsGroupProps) {
+    const [state, setState] = useState<[boolean, boolean, boolean, boolean]>([true, false, false, false])
 
     const handleState = () => {
-        if (props.state == 0)
-            setState([1, 0, 0, 0])
-        else if (props.state == 1)
-            setState([0, 1, 0, 0])
-        else if (props.state == 2)
-            setState([0, 0, 1, 0])
-        else if (props.state == 3)
-            setState([0, 0, 0, 1])
+        if (props.state === 0)
+            setState([true, false, false, false])
+        else if (props.state === 1)
+            setState([false, true, false, false])
+        else if (props.state === 2)
+            setState([false, false, true, false])
+        else if (props.state === 3)
+            setState([false, false, false, true])
     }
     
     useEffect(handleState, [props.state])
 
     const getState = () => {
-        return state.map(value => value ?"text-white border-white" :"text-blue-300 border-[transparent]")
+        return state.map(value => value ? "text-white border-white" : "text-blue-300 hover:text-white border-[transparent] hover:border-white/50")
     }
-
     return (
         <div className={`${props.className || ''} flex flex-row gap-8`}>
-            <Tabs name="moon" className={getState()[0]} onClick={props.onclick[0]}/>
-            <Tabs name="mars" className={getState()[1]} onClick={props.onclick[1]}/>
-            <Tabs name="europa" className={getState()[2]} onClick={props.onclick[2]}/>
-            <Tabs name="titan" className={getState()[3]} onClick={props.onclick[3]}/>
+            <Tabs name="moon" className={getState()[0]} onClick={() => props.onClick[0](0)}/>
+            <Tabs name="mars" className={getState()[1]} onClick={() => props.onClick[1](1)}/>
+            <Tabs name="europa" className={getState()[2]} onClick={() => props.onClick[2](2)}/>
+            <Tabs name="titan" className={getState()[3]} onClick={() => props.onClick[3](3)}/>
         </div>
     )
 }
 
-export function SmallPaginationGroup(props: any) {
-    const [state, setState] = useState([1, 0, 0, 0])
+export interface SmallPaginationGroupProps {
+    className?: string;
+    state: number;
+    onClick: (() => void)[];
+}
+
+export function SmallPaginationGroup(props: SmallPaginationGroupProps) {
+    const [state, setState] = useState<[boolean, boolean, boolean, boolean]>([true, false, false, false])
 
     const handleState = () => {
-        if (props.state == 0)
-            setState([1, 0, 0, 0])
-        else if (props.state == 1)
-            setState([0, 1, 0, 0])
-        else if (props.state == 2)
-            setState([0, 0, 1, 0])
-        else if (props.state == 3)
-            setState([0, 0, 0, 1])
+        if (props.state === 0)
+            setState([true, false, false, false])
+        else if (props.state === 1)
+            setState([false, true, false, false])
+        else if (props.state === 2)
+            setState([false, false, true, false])
+        else if (props.state === 3)
+            setState([false, false, false, true])
     }
     
     useEffect(handleState, [props.state])
 
     const getState = () => {
-        return state.map(value => value ?"bg-white" :"bg-white/15")
+        return state.map(value => value ? "bg-white" : "bg-white/15 lg:hover:bg-white/50")
     }
 
     return (
@@ -127,22 +142,28 @@ export function SmallPaginationGroup(props: any) {
     )
 }
 
-export function LargePaginationGroup(props: any) {
-    const [state, setState] = useState([1, 0, 0])
+export interface LargePaginationGroupProps {
+    className?: string;
+    indexState: number;
+    onClick: (() => void)[];
+}
 
-    const handleState = () => {
-        if (props.state == 0)
-            setState([1, 0, 0])
-        else if (props.state == 1)
-            setState([0, 1, 0])
-        else if (props.state == 2)
-            setState([0, 0, 1])
+export function LargePaginationGroup(props: LargePaginationGroupProps) {
+    const [indexState, setIndexState] = useState<[boolean, boolean, boolean]>([true, false, false])
+
+    const handleIndexState = () => {
+        if (props.indexState === 0)
+            setIndexState([true, false, false])
+        else if (props.indexState === 1)
+            setIndexState([false, true, false])
+        else if (props.indexState === 2)
+            setIndexState([false, false, true])
     }
-    
-    useEffect(handleState, [props.state])
+
+    useEffect(handleIndexState, [props.indexState])
 
     const getState = () => {
-        return state.map(value => value ?"text-blue-900 bg-white border-white" :"text-white bg-blue-900")
+        return indexState.map(value => value ? "text-blue-900 bg-white border-white" :"text-white bg-blue-900 border-white/25 lg:hover:border-white")
     }
 
     return (

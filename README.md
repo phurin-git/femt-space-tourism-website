@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Frontend Mentor - Space tourism website solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Space tourism website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### The challenge
 
-- Configure the top-level `parserOptions` property like this:
+Users should be able to:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- View the optimal layout for each of the website's pages depending on their device's screen size
+- See hover states for all interactive elements on the page
+- View each page and be able to toggle between the tabs to see new information
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Screenshot
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![iPhone 12 Pro](./screenshots/screenshot_iphone12pro_390x844.jpeg)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+![iPad](./screenshots/screenshot_ipad_768x1024.jpeg)
+
+![Macbook Pro](./screenshots/screenshot_macbookpro_1440x900.jpeg)
+
+## My process
+
+### Built with
+
+- [Vite](https://vitejs.dev/) - Frontend Tooling
+- [React](https://react.dev/) - The library for web and native user interfaces
+- [React Router DOM](https://reactrouter.com/en/main) - Client Side Routing
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework packed with classes
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
+- [Framer Motion](https://www.framer.com/motion/) - A production-ready motion library for React
+
+## Author
+
+- Frontend Mentor - [@phurin-git](https://www.frontendmentor.io/profile/phurin-git)
+
+## Acknowledgments
+
+- [@senta](https://codepen.io/senta) - [Dissolve Effect](https://codepen.io/senta/pen/XENWwo)
+- [Hengjie](https://stackoverflow.com/users/914986/hengjie?tab=profile) - [CSS3 background image transition](https://stackoverflow.com/questions/9483364/css3-background-image-transition)
+- [givanse](https://stackoverflow.com/users/7852/givanse) - [Detect a finger swipe through JavaScript on the iPhone and Android](https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android?newreg=159063c9dc2841c7b9786191044ea1e0)
