@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import hamburger from '../assets/shared/icon-hamburger.svg'
 import close from '../assets/shared/icon-close.svg'
 import { Logo, Navigation, Tabs, LargePagination, SmallPagination } from './single'
@@ -8,11 +9,30 @@ export interface NavigationGroupProps {
 }
 
 export function NavigationGroup(props: NavigationGroupProps) {
-    const [navState, setNavState] = useState<boolean>(false)
+    const pathname = useLocation().pathname.substring(1)
+    const [navPaneState, setNavPaneState] = useState<boolean>(false)
+    const [navActiveState, setNavActiveState] = useState<[boolean, boolean, boolean, boolean]>([true, false, false, false])
+
+    const handleNavActiveState = () => {
+        if (pathname === 'home' || pathname === '')
+            setNavActiveState([true, false, false, false])
+        else if (pathname === 'destination')
+            setNavActiveState([false, true, false, false])
+        else if (pathname === 'crew')
+            setNavActiveState([false, false, true, false])
+        else if (pathname === 'technology')
+            setNavActiveState([false, false, false, true])
+    }
+
+    useEffect(handleNavActiveState, [pathname])
+
+    const getNavActiveState = () => {
+        return navActiveState.map(value => value ? "border-white" : "border-[transparent] hover:border-white/50")
+    }
 
     const handleNavPane = () => {
         const navPane = document.getElementById('nav-pane')
-        if (navState){
+        if (navPaneState){
             navPane?.classList.add('-right-0')
             navPane?.classList.remove('-right-full')
         }
@@ -22,13 +42,13 @@ export function NavigationGroup(props: NavigationGroupProps) {
         }
     }
 
-    useEffect(handleNavPane, [navState])
+    useEffect(handleNavPane, [navPaneState])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const navPane = document.getElementById('nav-pane');
             if (navPane && !navPane.contains(event.target as Node)) {
-                setNavState(false);
+                setNavPaneState(false);
             }
         };
 
@@ -46,24 +66,24 @@ export function NavigationGroup(props: NavigationGroupProps) {
                     <Logo className='shrink-0 sm:mx-10 lg:mx-16' />
                     <span className='bg-[#979797] hidden lg:block w-full h-px'></span>
                 </div>
-                <button className='sm:hidden z-10' onClick={() => setNavState(true)}><img className='w-6 h-[21px]' src={ hamburger } alt="" /></button>
+                <button className='sm:hidden z-10' onClick={() => setNavPaneState(true)}><img className='w-6 h-[21px]' src={ hamburger } alt="" /></button>
                 <div className='hidden sm:flex flex-row justify-end gap-12 bg-white/5 backdrop-blur lg:min-w-[664px] sm:px-10 lg:px-16 lg:z-0 w-full'>
-                    <Navigation Id='00' name='home' href='/home' onClick={() => setNavState(false)}/>
-                    <Navigation Id='01' name='destination' href='/destination' onClick={() => setNavState(false)}/>
-                    <Navigation Id='02' name='crew' href='/crew' onClick={() => setNavState(false)}/>
-                    <Navigation Id='03' name='technology' href='/technology' onClick={() => setNavState(false)}/>
+                    <Navigation Id='00' className={getNavActiveState()[0]} name='home' href='/home' onClick={() => setNavPaneState(false)}/>
+                    <Navigation Id='01' className={getNavActiveState()[1]} name='destination' href='/destination' onClick={() => setNavPaneState(false)}/>
+                    <Navigation Id='02' className={getNavActiveState()[2]} name='crew' href='/crew' onClick={() => setNavPaneState(false)}/>
+                    <Navigation Id='03' className={getNavActiveState()[3]} name='technology' href='/technology' onClick={() => setNavPaneState(false)}/>
                 </div>
             </div>
             <div id="nav-pane" className="bg-[#0B0D17]/15 backdrop-blur fixed sm:hidden top-0 z-20 h-full transition-all duration-[600ms]">
                 <div className="flex flex-col items-end w-[254px] h-[812px]">
-                    <button onClick={() => setNavState(false)}>
+                    <button onClick={() => setNavPaneState(false)}>
                         <img className="w-6 h-[21px] mx-6 my-8 " src={ close } alt="" />
                     </button>
                     <div className='flex flex-col my-12 space-y-8'>
-                        <Navigation Id='00' name='home' href='/home' onClick={() => setNavState(false)}/>
-                        <Navigation Id='01' name='destination' href='/destination' onClick={() => setNavState(false)}/>
-                        <Navigation Id='02' name='crew' href='/crew' onClick={() => setNavState(false)}/>
-                        <Navigation Id='03' name='technology' href='/technology' onClick={() => setNavState(false)}/>
+                        <Navigation Id='00' className={getNavActiveState()[0]} name='home' href='/home' onClick={() => setNavPaneState(false)}/>
+                        <Navigation Id='01' className={getNavActiveState()[1]} name='destination' href='/destination' onClick={() => setNavPaneState(false)}/>
+                        <Navigation Id='02' className={getNavActiveState()[2]} name='crew' href='/crew' onClick={() => setNavPaneState(false)}/>
+                        <Navigation Id='03' className={getNavActiveState()[3]} name='technology' href='/technology' onClick={() => setNavPaneState(false)}/>
                     </div>
                 </div>
             </div>

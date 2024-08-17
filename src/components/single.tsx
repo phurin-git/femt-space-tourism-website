@@ -20,7 +20,7 @@ export interface NavigationProps {
 
 export function Navigation(props: NavigationProps) {
     return (
-        <Link className={`${props.className || ''} uppercase flex items-center gap-3 border-r-4 sm:border-r-0 sm:border-b-4 border-[transparent] hover:border-white/50 h-max sm:h-24 w-56 sm:w-max transition-all duration-300`} to={props.href} onClick={props.onClick}>
+        <Link className={`${props.className || ''} uppercase flex items-center gap-3 border-r-4 sm:border-r-0 sm:border-b-4 h-max sm:h-24 w-56 sm:w-max transition-all duration-300`} to={props.href} onClick={props.onClick}>
             <span className="txt-pre-8-bold">{props.Id}</span>
             <span className="txt-pre-8">{props.name}</span>
         </Link>
