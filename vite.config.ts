@@ -5,14 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   const config = {
       plugins: [react()],
-      base: '/',
-      build: {
-          outDir: 'docs', // Change this to your desired output directory for run "npm run build"
-      },
+      base: '/'
   };
 
   if (command !== 'serve') {
-      config.base = '/femt-space-tourism-website/';
+      config.base = "/[REPO_NAME]/";
   }
 
   return config;
