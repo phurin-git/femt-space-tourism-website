@@ -21,10 +21,10 @@
             // Check if the current path is valid
             if (validPaths.includes(currentPath)) {
               // Redirect to the correct route (React Router will handle it)
-              window.location.replace(myRepoName + currentPath);
+              window.location.href(myRepoName + currentPath);
             } else {
               // Redirect to a custom error page
-              window.location.replace(`${myRepoName}/error`);
+              window.location.href(`${myRepoName}/error`);
             }
         </script>
     </head>
